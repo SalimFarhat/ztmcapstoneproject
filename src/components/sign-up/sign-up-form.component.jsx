@@ -4,7 +4,7 @@ import "./sign-up-form.styles.scss";
 import FormInput from "../form-input/form-input.component";
 import Button from "../button/button.component";
 
-import { UserContext } from "../../contexts/user.context";
+// import { UserContext } from "../../contexts/user.context";
 
 const defaultFormFields = {
     displayName: "",
@@ -17,10 +17,7 @@ const SignUpForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const {displayName, email, password, confirmPassword} = formFields;
 
-    const {currentUser,setCurrentUser} = useContext(UserContext);
-
-
-    console.log("hit");
+    // const {currentUser,setCurrentUser} = useContext(UserContext);
 
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
@@ -37,8 +34,7 @@ const SignUpForm = () => {
             console.log(user);
             await createUserDocumentFromAuth(user, {displayName});
             resetFormFields();
-            setCurrentUser(user);
-            console.log(currentUser)
+            // setCurrentUser(user);
         }catch(error){
             if(error.code === 'auth/email-already-in-use'){
                 alert("Cannot Create User, Email Already In Use")
