@@ -3,9 +3,11 @@ import { useContext } from 'react';
 import { CartContext } from '../../contexts/cart.context';
 
 
-const CheckoutItem = (cartItem) => {
+const CheckoutItem = ({cartItem}) => {
     const { name, imageUrl, price, quantity } = cartItem;
     const {clearItemFromCart, addItemToCart, removeItemFromCart} = useContext(CartContext)
+    console.log(cartItem);
+    console.log(name);
 
     const clearItemHandler = () => {
         clearItemFromCart(cartItem)
