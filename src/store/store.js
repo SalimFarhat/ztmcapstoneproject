@@ -11,11 +11,11 @@ const middleWares = [process.env.NODE_ENV === 'production' && logger, thunk].fil
   Boolean
 );
 
-const thunkMiddleware = (store) => (next) => (action) => {
-  if(typeof(action) === 'function'){
-    action(dispatch);
-  }
-}
+// const thunkMiddleware = (store) => (next) => (action) => {
+//   if(typeof(action) === 'function'){
+//     action(dispatch);
+//   }
+// }
 
 const composeEnhancer =
   (process.env.NODE_ENV !== 'production' &&
