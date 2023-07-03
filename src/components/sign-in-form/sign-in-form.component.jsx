@@ -1,5 +1,5 @@
 import { useState, useContext } from "react";
-import { signInWithGooglePopup, createAuthUserWithEmailAndPassword, createUserDocumentFromAuth, SignInAuthUserWithEmailAndPassword } from "../../utils/firebase/firebase.utils";
+import { signInWithGooglePopup, SignInAuthUserWithEmailAndPassword, SignInWithFaceBookPopup } from "../../utils/firebase/firebase.utils";
 import "./sign-in-form.styles.scss";
 import FormInput from "../form-input/form-input.component";
 import Button, {BUTTON_TYPE_CLASSES} from "../button/button.component";
@@ -29,6 +29,9 @@ const SignInForm = () => {
         
         // setCurrentUser(response.user);
     };
+    const SignInWithFaceBook = async () => {
+        await SignInWithFaceBookPopup();
+    }
     
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -71,6 +74,7 @@ const SignInForm = () => {
                 <div className="buttons-container">
                     <Button type="submit"> Sign In </Button>
                     <Button type="button" buttonType={BUTTON_TYPE_CLASSES.google} onClick={SignInWithGoogle}> Google Sign In </Button>
+                    <Button type="button" onClick={SignInWithFaceBook}> Facebook Sign In </Button>
                 </div>
             </form>
         </div>

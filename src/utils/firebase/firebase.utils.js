@@ -36,9 +36,15 @@ provider.setCustomParameters({
     prompt: "select_account"
 });
 
-export const auth = getAuth();
+const facebookProvider = new FacebookAuthProvider();
+facebookProvider.setCustomParameters({
+  prompt: "select_account"
+})
+
+export const auth = getAuth(firebaseApp);
 export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 export const signInWithGoogleRedirect = () => signInWithRedirect(auth, provider);
+export const SignInWithFaceBookPopup = () => signInWithPopup(auth, facebookProvider);
 
 export const db = getFirestore();
 
@@ -101,16 +107,12 @@ export const addCollectionAndDocuments = async (
   console.log('done');
 };
 
-export const getCateogriesAndDocuments = async () => {
+// getCategoriesAndDocuments
+
+export const getCategoriesAndDocuments = async () => {
   const collectionRef = collection(db, 'collections');
   const q = query(collectionRef);
   const querySnapshot = await getDocs(q);
 
-  const categoryMap = querySnapshot.docs.reduce((acc, docSnapshot) => {
-    const {title, items} = docSnapshot.data();
-    acc[title.toLowerCase()] = items;
-    return acc;
-  }, {});
-
-  return categoryMap;
+  return querySnapshot.docs.map(docSnapshot => docSnapshot.data());
 };
