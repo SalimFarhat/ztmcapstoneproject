@@ -6,7 +6,7 @@ import Shop from "./routes/shop/shop.component"
 import Checkout from "./components/Checkout/checkout.component";
 import ErrorPage from "./routes/errorpage/error.component";
 import { useEffect } from "react";
-import { onAuthStateChangedListener, createUserDocumentFromAuth } from "./utils/firebase/firebase.utils";
+import { onAuthStateChangedListener, createUserDocumentFromAuth, getCurrentUser } from "./utils/firebase/firebase.utils";
 import { setCurrentUser } from "./store/user/user.action";
 import { useDispatch } from "react-redux";
 
@@ -14,20 +14,26 @@ import { useDispatch } from "react-redux";
 // import {BrowserRouter as Routes, useRoutes} from 'react-router-dom'
 import { Routes, Route } from "react-router-dom";
 
-
 const App = () => { 
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const unsubscribe = onAuthStateChangedListener((user) => {
-      if (user) {
-        createUserDocumentFromAuth(user);
-      }
-      dispatch(setCurrentUser(user));
-    });
 
-    return unsubscribe;
-  }, []);
+  useEffect(() => {
+    getCurrentUser().then((user) => console.log(user));
+  },[])
+  
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChangedListener((user) => {
+  //     if (user) {
+  //       createUserDocumentFromAuth(user);
+  //     }
+  //     const pickedUser = user && (({ accessToken, email }) => ({ accessToken, email}))(user);
+  //     console.log(setCurrentUser(pickedUser));
+  //     dispatch(setCurrentUser(pickedUser));
+  //   });
+
+  //   return unsubscribe;
+  // }, [dispatch]);
 
   return (
     <Routes>
