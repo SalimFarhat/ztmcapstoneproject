@@ -10,9 +10,10 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@types/jest": "^29.5.4",
-    "@types/node": "^20.5.4",
+    "@types/node": "^20.5.6",
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
+    "@types/styled-components": "^5.1.26",
     "dispatch": "^1.0.2",
     "dotenv": "^16.3.1",
     "firebase": "^9.23.0",
@@ -34,7 +35,8 @@
     "spinner": "^0.3.4",
     "stripe": "^12.18.0",
     "styled-components": "^6.0.2",
-    "typescript": "^5.1.6",
+    "typed-redux-saga": "^1.5.0",
+    "typescript": "^5.2.2",
     "web-vitals": "^2.1.4",
     "yarn": "^1.22.19"
   },
@@ -61,5 +63,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@types/redux-logger": "^3.0.9",
+    "babel-plugin-macros": "^3.1.0"
   }
 }
